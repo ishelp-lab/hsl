@@ -80,7 +80,7 @@ function App() {
               className="m-developer-logo-link"
               title="Is Help"
             >
-              <img src={logoIsHelp} alt="Logo Is Help" className="m-dev-middle-logo" style={{ width: "200px" }} />
+              <img src={logoIsHelp} alt="Logo Is Help" className="m-dev-middle-logo" style={{ height: "140px" }} />
             </a>
           </div>
 
