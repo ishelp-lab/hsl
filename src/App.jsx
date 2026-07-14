@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { 
-  Phone, 
-  MapPin, 
-  Clock, 
+import {
+  Phone,
+  MapPin,
+  Clock,
   MessageSquare
 } from 'lucide-react'
 import OriginalApp from './App.original.jsx'
@@ -63,9 +63,9 @@ function App() {
             <span className="m-badge-dot"></span>
             Site em Desenvolvimento
           </div>
-          
+
           <h1 className="m-title">Estamos preparando um novo portal para você</h1>
-          
+
           <p className="m-description">
             O site oficial do <strong>Hospital São Lucas</strong> está passando por atualizações para oferecer uma experiência digital mais moderna, rápida e completa. Em breve, você terá acesso a uma plataforma moderna para agendamento de consultas, exames de imagem e informações completas sobre nossa infraestrutura.
           </p>
@@ -73,31 +73,31 @@ function App() {
           {/* Is Help middle branding */}
           <div className="m-dev-middle">
             <span className="m-dev-middle-text">Site sendo desenvolvido por:</span>
-            <a 
-              href="https://ishelp.com.br" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://ishelp.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
               className="m-developer-logo-link"
               title="Is Help"
             >
-              <img src={logoIsHelp} alt="Logo Is Help" className="m-dev-middle-logo" />
+              <img src={logoIsHelp} alt="Logo Is Help" className="m-dev-middle-logo" style="width: 200px" />
             </a>
           </div>
 
           <div className="m-actions">
-            <a 
-              href={getWppLink("Olá, gostaria de agendar um atendimento no Hospital São Lucas.")} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={getWppLink("Olá, gostaria de agendar um atendimento no Hospital São Lucas.")}
+              target="_blank"
+              rel="noopener noreferrer"
               className="m-btn m-btn-primary"
             >
               <MessageSquare size={18} />
               Falar no WhatsApp
             </a>
-            <a 
-              href="https://maps.google.com/?q=Av.+João+Gualberto,+1946+-+Juvevê,+Curitiba+-+PR" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://maps.google.com/?q=Av.+João+Gualberto,+1946+-+Juvevê,+Curitiba+-+PR"
+              target="_blank"
+              rel="noopener noreferrer"
               className="m-btn m-btn-secondary"
             >
               <MapPin size={18} />
@@ -114,10 +114,10 @@ function App() {
               <Clock className="m-contact-icon" size={16} />
               Seg - Sex: 07h30 às 19h00 | Sáb: 08h00 às 12h00
             </div>
-            <a 
-              href="https://maps.google.com/?q=Av.+João+Gualberto,+1946+-+Juvevê,+Curitiba+-+PR" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://maps.google.com/?q=Av.+João+Gualberto,+1946+-+Juvevê,+Curitiba+-+PR"
+              target="_blank"
+              rel="noopener noreferrer"
               className="m-contact-item"
             >
               <MapPin className="m-contact-icon" size={16} />
