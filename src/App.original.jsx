@@ -68,7 +68,7 @@ function App() {
   }
 
   // Base phone and messages
-  const wppBaseUrl = "https://wa.me/554135396264"
+  const wppBaseUrl = "https://wa.me/554132505511"
   const getWppLink = (message) => `${wppBaseUrl}?text=${encodeURIComponent(message)}`
 
   const exams = [
@@ -577,7 +577,7 @@ function App() {
                 </div>
                 <div className="contact-method-text">
                   <h4>Telefone e WhatsApp</h4>
-                  <p><a href="tel:+554135396264" style={{ fontWeight: '500' }}>(41) 3539-6264</a></p>
+                  <p><a href="tel:+554132505511" style={{ fontWeight: '500' }}>(41) 3250-5511</a></p>
                 </div>
               </div>
 
@@ -587,7 +587,7 @@ function App() {
                 </div>
                 <div className="contact-method-text">
                   <h4>Endereço</h4>
-                  <p>Rua Domingos Cordeiro, 1223 – Centro, Campo Largo – PR</p>
+                  <p>Av. João Gualberto, 1946 – Juvevê, Curitiba – PR</p>
                 </div>
               </div>
 
@@ -603,24 +603,14 @@ function App() {
                   </p>
                 </div>
               </div>
-
-              <div className="contact-method-item">
-                <div className="contact-method-icon">
-                  <Mail size={20} />
-                </div>
-                <div className="contact-method-text">
-                  <h4>E-mail Oficial</h4>
-                  <p><a href="mailto:contato@cemicpr.com.br">contato@cemicpr.com.br</a></p>
-                </div>
-              </div>
             </div>
           </div>
 
           <div className="map-container">
-            {/* Real embedded Google Map centered near the physical address for CEMIC (Campo Largo) which adds to the fidelity! */}
+            {/* Real embedded Google Map centered near Juvevê, Curitiba */}
             <iframe 
               title="Mapa de Localização do Hospital São Lucas"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.8398463993417!2d-49.5284346!3d-25.4436577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ece64032d67d71%3A0xc3c5f214227181f0!2sR.%20Domingos%20Cordeiro%2C%201223%20-%20Centro%2C%20Campo%20Largo%20-%20PR%2C%2083601-380!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.435728347895!2d-49.2612739!3d-25.4236577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce447781b0a5b%3A0x6b4efd8c0b29a28c!2sAv.%20Jo%C3%A3o%20Gualberto%2C%201946%20-%20Juvev%C3%AA%2C%20Curitiba%20-%20PR%2C%2080030-000!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
               className="map-iframe"
               allowFullScreen="" 
               loading="lazy" 

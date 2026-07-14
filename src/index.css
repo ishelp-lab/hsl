@@ -26,8 +26,8 @@
   --border-light: rgba(255, 255, 255, 0.15);
   
   /* Fonts */
-  --font-serif: 'Playfair Display', Georgia, Cambria, serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   
   /* Layout & Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -1462,4 +1462,35 @@ section {
     flex-direction: column;
     align-items: center;
   }
+}
+
+.m-dev-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+}
+
+.m-dev-middle-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(243, 244, 246, 0.5);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.m-dev-middle-logo {
+  height: 52px;
+  width: auto;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.m-dev-middle-logo:hover {
+  transform: scale(1.05);
 }

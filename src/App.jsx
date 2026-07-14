@@ -3,7 +3,6 @@ import {
   Phone, 
   MapPin, 
   Clock, 
-  Mail, 
   MessageSquare
 } from 'lucide-react'
 import OriginalApp from './App.original.jsx'
@@ -37,7 +36,7 @@ function App() {
     return <OriginalApp />
   }
 
-  const wppBaseUrl = "https://wa.me/554135396264"
+  const wppBaseUrl = "https://wa.me/554132505511"
   const getWppLink = (message) => `${wppBaseUrl}?text=${encodeURIComponent(message)}`
 
   return (
@@ -71,6 +70,20 @@ function App() {
             O site oficial do <strong>Hospital São Lucas</strong> está passando por atualizações para oferecer uma experiência digital mais moderna, rápida e completa. Em breve, você terá acesso a uma plataforma moderna para agendamento de consultas, exames de imagem e informações completas sobre nossa infraestrutura.
           </p>
 
+          {/* Is Help middle branding */}
+          <div className="m-dev-middle">
+            <span className="m-dev-middle-text">Site sendo desenvolvido por:</span>
+            <a 
+              href="https://ishelp.com.br" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="m-developer-logo-link"
+              title="Is Help"
+            >
+              <img src={logoIsHelp} alt="Logo Is Help" className="m-dev-middle-logo" />
+            </a>
+          </div>
+
           <div className="m-actions">
             <a 
               href={getWppLink("Olá, gostaria de agendar um atendimento no Hospital São Lucas.")} 
@@ -82,7 +95,7 @@ function App() {
               Falar no WhatsApp
             </a>
             <a 
-              href="https://maps.google.com/?q=Rua+Domingos+Cordeiro,+1223+Centro+Campo+Largo+PR" 
+              href="https://maps.google.com/?q=Av.+João+Gualberto,+1946+-+Juvevê,+Curitiba+-+PR" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="m-btn m-btn-secondary"
@@ -93,40 +106,32 @@ function App() {
           </div>
 
           <div className="m-contact-bar">
-            <a href="tel:+554135396264" className="m-contact-item">
+            <a href="tel:+554132505511" className="m-contact-item">
               <Phone className="m-contact-icon" size={16} />
-              (41) 3539-6264
+              (41) 3250-5511
             </a>
             <div className="m-contact-item">
               <Clock className="m-contact-icon" size={16} />
               Seg - Sex: 07h30 às 19h00 | Sáb: 08h00 às 12h00
             </div>
-            <a href="mailto:contato@cemicpr.com.br" className="m-contact-item">
-              <Mail className="m-contact-icon" size={16} />
-              contato@cemicpr.com.br
+            <a 
+              href="https://maps.google.com/?q=Av.+João+Gualberto,+1946+-+Juvevê,+Curitiba+-+PR" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="m-contact-item"
+            >
+              <MapPin className="m-contact-icon" size={16} />
+              Av. João Gualberto, 1946 – Juvevê, Curitiba – PR
             </a>
           </div>
         </div>
       </main>
 
-      {/* Footer with Developer Signature */}
+      {/* Footer */}
       <footer className="m-footer">
         <p className="m-footer-copyright">
           &copy; {new Date().getFullYear()} Hospital São Lucas. Todos os direitos reservados.
         </p>
-        
-        <div className="m-developer-branding">
-          <span className="m-developer-text">Desenvolvido por:</span>
-          <a 
-            href="https://ishelp.com.br" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="m-developer-logo-link"
-            title="Is Help"
-          >
-            <img src={logoIsHelp} alt="Logo Is Help" className="m-developer-logo" />
-          </a>
-        </div>
       </footer>
     </div>
   )
