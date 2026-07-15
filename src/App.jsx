@@ -36,7 +36,7 @@ function App() {
     return <OriginalApp />
   }
 
-  const wppBaseUrl = "https://wa.me/554132505511"
+  const wppBaseUrl = "https://wa.me/554130329300"
   const getWppLink = (message) => `${wppBaseUrl}?text=${encodeURIComponent(message)}`
 
   return (
@@ -95,7 +95,7 @@ function App() {
               Falar no WhatsApp
             </a>
             <a
-              href="https://maps.google.com/?q=Av.+João+Gualberto,+1946+-+Juvevê,+Curitiba+-+PR"
+              href="https://maps.google.com/?q=R.+Generoso+Marquês,+2022+-+Centro,+Campo+Largo+-+PR,+83601-050"
               target="_blank"
               rel="noopener noreferrer"
               className="m-btn m-btn-secondary"
@@ -106,22 +106,22 @@ function App() {
           </div>
 
           <div className="m-contact-bar">
-            <a href="tel:+554132505511" className="m-contact-item">
+            <a href="tel:+554130329300" className="m-contact-item">
               <Phone className="m-contact-icon" size={16} />
-              (41) 3250-5511
+              (41) 3032-9300
             </a>
             <div className="m-contact-item">
               <Clock className="m-contact-icon" size={16} />
-              Seg - Sex: 07h30 às 19h00 | Sáb: 08h00 às 12h00
+              Todos os dias: 08h00 às 18h00
             </div>
             <a
-              href="https://maps.google.com/?q=Av.+João+Gualberto,+1946+-+Juvevê,+Curitiba+-+PR"
+              href="https://maps.google.com/?q=R.+Generoso+Marquês,+2022+-+Centro,+Campo+Largo+-+PR,+83601-050"
               target="_blank"
               rel="noopener noreferrer"
               className="m-contact-item"
             >
               <MapPin className="m-contact-icon" size={16} />
-              Av. João Gualberto, 1946 – Juvevê, Curitiba – PR
+              R. Generoso Marquês, 2022 – Centro, Campo Largo – PR
             </a>
           </div>
         </div>

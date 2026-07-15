@@ -68,7 +68,7 @@ function App() {
   }
 
   // Base phone and messages
-  const wppBaseUrl = "https://wa.me/554132505511"
+  const wppBaseUrl = "https://wa.me/554130329300"
   const getWppLink = (message) => `${wppBaseUrl}?text=${encodeURIComponent(message)}`
 
   const exams = [
@@ -577,7 +577,7 @@ function App() {
                 </div>
                 <div className="contact-method-text">
                   <h4>Telefone e WhatsApp</h4>
-                  <p><a href="tel:+554132505511" style={{ fontWeight: '500' }}>(41) 3250-5511</a></p>
+                  <p><a href="tel:+554130329300" style={{ fontWeight: '500' }}>(41) 3032-9300</a></p>
                 </div>
               </div>
 
@@ -587,7 +587,7 @@ function App() {
                 </div>
                 <div className="contact-method-text">
                   <h4>Endereço</h4>
-                  <p>Av. João Gualberto, 1946 – Juvevê, Curitiba – PR</p>
+                  <p>R. Generoso Marquês, 2022 – Centro, Campo Largo – PR, 83601-050</p>
                 </div>
               </div>
 
@@ -598,8 +598,8 @@ function App() {
                 <div className="contact-method-text">
                   <h4>Horário de Atendimento</h4>
                   <p>
-                    Segunda a Sexta: 07h30 às 19h00<br />
-                    Sábados: 08h00 às 12h00
+                    Todos os dias:<br />
+                    08h00 às 18h00
                   </p>
                 </div>
               </div>
@@ -607,10 +607,10 @@ function App() {
           </div>
 
           <div className="map-container">
-            {/* Real embedded Google Map centered near Juvevê, Curitiba */}
+            {/* Real embedded Google Map centered near Campo Largo */}
             <iframe 
               title="Mapa de Localização do Hospital São Lucas"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.435728347895!2d-49.2612739!3d-25.4236577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce447781b0a5b%3A0x6b4efd8c0b29a28c!2sAv.%20Jo%C3%A3o%20Gualberto%2C%201946%20-%20Juvev%C3%AA%2C%20Curitiba%20-%20PR%2C%2080030-000!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.597654516139!2d-49.53974442469956!3d-25.40555677755866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ddf93c5d63ef1b%3A0x6e9f78328761a296!2sR.%20Generoso%20Marques%2C%202022%20-%20Centro%2C%20Campo%20Largo%20-%20PR%2C%2083601-390!5e0!3m2!1spt-BR!2sbr!4v1721000000000!5m2!1spt-BR!2sbr" 
               className="map-iframe"
               allowFullScreen="" 
               loading="lazy" 
