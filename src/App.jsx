@@ -67,12 +67,12 @@ function App() {
           <h1 className="m-title">Estamos preparando um novo portal para você</h1>
 
           <p className="m-description">
-            O site oficial do <strong>Hospital São Lucas</strong> está passando por atualizações para oferecer uma experiência digital mais moderna, rápida e completa. Em breve, você terá acesso a uma plataforma moderna para agendamento de consultas, exames de imagem e informações completas sobre nossa infraestrutura.
+            O site oficial do <strong>Hospital São Lucas</strong> está passando por atualizações para oferecer uma experiência digital mais moderna, rápida e completa. Em breve, você terá acesso a um site completo para conhecer nossas especialidades, corpo clínico, exames de imagem, informações sobre nossa infraestrutura e muito mais.
           </p>
 
           {/* Is Help middle branding */}
           <div className="m-dev-middle">
-            <span className="m-dev-middle-text">Site sendo desenvolvido por:</span>
+            <span className="m-dev-middle-text">Site desenvolvido por:</span>
             <a
               href="https://ishelp.com.br"
               target="_blank"
