@@ -210,13 +210,13 @@ section {
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 16px;
   list-style: none;
 }
 
 .nav-link {
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-primary);
   position: relative;
   padding: 8px 0;
