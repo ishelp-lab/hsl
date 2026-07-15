@@ -1,7 +1,8 @@
-import DevPage from './DevPage.jsx'
+import HomePage from './HomePage.jsx'
 
 function App() {
-  return <DevPage />
+  return <HomePage />
 }
 
 export default App
+
