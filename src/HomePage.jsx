@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { 
   Phone, 
@@ -27,10 +27,71 @@ import {
   HelpCircle
 } from 'lucide-react'
 
+// Wave Divider Component
+const WaveDivider = ({ fillColor = '#f4fbf8', flip = false }) => (
+  <div className={`wave-divider ${flip ? 'wave-divider-flip' : ''}`}>
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,0 C300,60 900,0 1200,50 L1200,60 L0,60 Z" fill={fillColor} />
+    </svg>
+  </div>
+)
+
 function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
+  const [counterValue, setCounterValue] = useState(0)
+  const counterRef = useRef(null)
+  const counterAnimated = useRef(false)
+
+  // Scroll reveal with IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    const elements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Animated counter for "30+" badge
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !counterAnimated.current) {
+            counterAnimated.current = true
+            let start = 0
+            const end = 30
+            const duration = 1500
+            const step = duration / end
+
+            const timer = setInterval(() => {
+              start += 1
+              setCounterValue(start)
+              if (start >= end) clearInterval(timer)
+            }, step)
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   // Handle scroll effects
   useEffect(() => {
@@ -87,8 +148,46 @@ function HomePage() {
   ]
 
   const agreements = [
-    "Amil", "Fundação Sanepar", "Medsul", "Nossa Saúde", 
-    "Paraná Clínicas", "Postal Saúde", "Saúde Caixa", "Unimed", "Voam"
+    { name: "Amil", logo: "/convenios/amil.png" },
+    { name: "Fundação Sanepar", logo: "/convenios/sanepar.png" },
+    { name: "Medsul", logo: "/convenios/medsul.png" },
+    { name: "Nossa Saúde", logo: "/convenios/nossa-saude.png" },
+    { name: "Paraná Clínicas", logo: "/convenios/parana-clinicas.png" },
+    { name: "Postal Saúde", logo: "/convenios/postal-saude.png" },
+    { name: "Saúde Caixa", logo: "/convenios/saude-caixa.png" },
+    { name: "Unimed", logo: "/convenios/unimed.png" },
+    { name: "Voam", logo: "/convenios/voam.png" }
+  ]
+
+  const newsItems = [
+    {
+      img: '/news_1.png',
+      date: '10 Jul 2026',
+      title: 'Novo Centro Cirúrgico com tecnologia de ponta',
+      description: 'Inauguramos nosso centro cirúrgico renovado com equipamentos de última geração para procedimentos minimamente invasivos.',
+      icon: <Newspaper size={14} />
+    },
+    {
+      img: '/news_2.png',
+      date: '28 Jun 2026',
+      title: 'Campanha de Saúde Preventiva da Comunidade',
+      description: 'Mais de 500 pessoas foram atendidas em nossa campanha gratuita de check-up e orientação médica.',
+      icon: <Megaphone size={14} />
+    },
+    {
+      img: '/news_3.png',
+      date: '15 Jun 2026',
+      title: 'Exames de Imagem com Inteligência Artificial',
+      description: 'Nosso setor de diagnósticos agora conta com IA auxiliar para laudos mais rápidos e precisos.',
+      icon: <Camera size={14} />
+    },
+    {
+      img: '/news_4.png',
+      date: '02 Jun 2026',
+      title: 'Maternidade São Lucas: referência no Paraná',
+      description: 'Nossa maternidade alcançou a marca de 10.000 partos humanizados realizados com excelência e segurança.',
+      icon: <Calendar size={14} />
+    }
   ]
 
   return (
@@ -132,6 +231,14 @@ function HomePage() {
       {/* HERO SECTION (INÍCIO) */}
       <div id="inicio" className="hero-wrapper">
         <div className="hero-overlay"></div>
+        {/* Floating particles */}
+        <div className="hero-particles">
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+        </div>
         <div className="hero-content">
           <div className="hero-text-block">
             <h1 className="hero-h1">
@@ -155,25 +262,25 @@ function HomePage() {
       {/* QUICK ACCESS CARDS (DESTAQUES - INÍCIO) */}
       <div className="quick-access-wrapper">
         <div className="quick-access-grid">
-          <a href="#pacientes" onClick={(e) => { e.preventDefault(); handleNavClick('pacientes'); }} className="quick-card">
+          <a href="#pacientes" onClick={(e) => { e.preventDefault(); handleNavClick('pacientes'); }} className="quick-card reveal stagger-1">
             <div className="quick-icon-wrapper"><Info size={24} /></div>
             <h3>Orientações para Internação</h3>
             <p>Tudo o que você precisa saber para o seu período de internação e alta.</p>
             <span className="quick-link">Saber mais <ChevronRight size={16} /></span>
           </a>
-          <a href="#especialidades" onClick={(e) => { e.preventDefault(); handleNavClick('especialidades'); }} className="quick-card">
+          <a href="#especialidades" onClick={(e) => { e.preventDefault(); handleNavClick('especialidades'); }} className="quick-card reveal stagger-2">
             <div className="quick-icon-wrapper"><Activity size={24} /></div>
             <h3>Nossas Especialidades</h3>
             <p>Corpo clínico completo e serviços diagnósticos de alta tecnologia.</p>
             <span className="quick-link">Ver especialidades <ChevronRight size={16} /></span>
           </a>
-          <a href="#ohospital" onClick={(e) => { e.preventDefault(); handleNavClick('ohospital'); }} className="quick-card">
+          <a href="#ohospital" onClick={(e) => { e.preventDefault(); handleNavClick('ohospital'); }} className="quick-card reveal stagger-3">
             <div className="quick-icon-wrapper"><Heart size={24} /></div>
             <h3>O Hospital</h3>
             <p>Conheça nossa história, estrutura, missão e valores institucionais.</p>
             <span className="quick-link">Conhecer <ChevronRight size={16} /></span>
           </a>
-          <a href="#contato" onClick={(e) => { e.preventDefault(); handleNavClick('contato'); }} className="quick-card">
+          <a href="#contato" onClick={(e) => { e.preventDefault(); handleNavClick('contato'); }} className="quick-card reveal stagger-4">
             <div className="quick-icon-wrapper"><Phone size={24} /></div>
             <h3>Fale Conosco</h3>
             <p>Canais de atendimento, localização, ouvidoria e telefones úteis.</p>
@@ -185,7 +292,7 @@ function HomePage() {
       {/* O HOSPITAL SECTION */}
       <section id="ohospital">
         <div className="about-grid">
-          <div className="about-text">
+          <div className="about-text reveal-left">
             <h2>O Hospital</h2>
             
             <div className="about-bullets" style={{ marginTop: '30px' }}>
@@ -232,20 +339,23 @@ function HomePage() {
 
           </div>
 
-          <div className="about-image-container">
+          <div className="about-image-container reveal-right">
             <img src="/about_building.png" alt="Fachada Hospital São Lucas" className="about-image" />
-            <div className="about-badge">
-              <div className="about-badge-num">30+</div>
+            <div className="about-badge" ref={counterRef}>
+              <div className="about-badge-num">{counterValue}+</div>
               <div className="about-badge-txt">Anos de<br />Tradição</div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* WAVE DIVIDER */}
+      <WaveDivider fillColor="#f4fbf8" />
+
       {/* ESPECIALIDADES E SERVIÇOS SECTION */}
       <section id="especialidades" className="section-alt">
         <div className="specialties-container">
-          <div className="specialties-sidebar">
+          <div className="specialties-sidebar reveal-left">
             <h2>Especialidades e Serviços</h2>
             <p>
               Contamos com um corpo clínico multidisciplinar pronto para realizar consultas eletivas, diagnósticos de imagem, exames avançados e acompanhamentos terapêuticos especializados.
@@ -267,7 +377,7 @@ function HomePage() {
 
           <div className="specialties-grid">
             {specialties.slice(0, 8).map((spec, index) => (
-              <div key={index} className="specialty-item" style={{ padding: '15px' }}>
+              <div key={index} className={`specialty-item reveal stagger-${index + 1}`} style={{ padding: '15px' }}>
                 <div className="specialty-icon-wrapper" style={{ width: '32px', height: '32px' }}>
                   <Stethoscope size={16} />
                 </div>
@@ -280,135 +390,172 @@ function HomePage() {
         </div>
       </section>
 
+      {/* WAVE DIVIDER */}
+      <WaveDivider fillColor="#ffffff" flip />
+
       {/* PACIENTES E VISITANTES SECTION */}
       <section id="pacientes">
-        <div>
-          <div className="section-header">
-            <h2>Pacientes e Visitantes</h2>
-            <p>Informações e orientações essenciais para garantir conforto, segurança e uma estadia tranquila.</p>
+        <div className="section-header reveal">
+          <h2>Pacientes e Visitantes</h2>
+          <p>Informações e orientações essenciais para garantir conforto, segurança e uma estadia tranquila.</p>
+        </div>
+
+        <div className="patients-layout">
+          <div className="patients-image-container reveal-left">
+            <img src="/patients_care.png" alt="Equipe médica cuidando de pacientes" />
+            <div className="patients-image-overlay">
+              <h4>Cuidado Humanizado</h4>
+              <p>Nossa equipe multidisciplinar acolhe cada paciente com atenção e carinho.</p>
+            </div>
           </div>
 
-          <div className="infra-grid">
-            <div className="infra-card">
-              <div className="infra-card-body" style={{ padding: '30px' }}>
-                <div style={{ color: 'var(--primary)', marginBottom: '15px' }}><Info size={32} /></div>
-                <h3>Orientações para Internação e Alta</h3>
-                <p style={{ marginTop: '10px' }}>O que trazer, documentos necessários, regras do quarto e instruções detalhadas para o momento de sua alta hospitalar.</p>
+          <div>
+            <div className="infra-grid" style={{ gridTemplateColumns: '1fr' }}>
+              <div className="infra-card reveal stagger-1">
+                <div className="infra-card-body" style={{ padding: '30px' }}>
+                  <div style={{ color: 'var(--primary)', marginBottom: '15px' }}><Info size={32} /></div>
+                  <h3>Orientações para Internação e Alta</h3>
+                  <p style={{ marginTop: '10px' }}>O que trazer, documentos necessários, regras do quarto e instruções detalhadas para o momento de sua alta hospitalar.</p>
+                </div>
               </div>
-            </div>
-            
-            <div className="infra-card">
-              <div className="infra-card-body" style={{ padding: '30px' }}>
-                <div style={{ color: 'var(--primary)', marginBottom: '15px' }}><Clock size={32} /></div>
-                <h3>Horários de Visita</h3>
-                <p style={{ marginTop: '10px' }}>Regras de acesso, horários definidos para UTI, Enfermarias e Apartamentos para manter o descanso dos pacientes.</p>
+              
+              <div className="infra-card reveal stagger-2">
+                <div className="infra-card-body" style={{ padding: '30px' }}>
+                  <div style={{ color: 'var(--primary)', marginBottom: '15px' }}><Clock size={32} /></div>
+                  <h3>Horários de Visita</h3>
+                  <p style={{ marginTop: '10px' }}>Regras de acesso, horários definidos para UTI, Enfermarias e Apartamentos para manter o descanso dos pacientes.</p>
+                </div>
               </div>
-            </div>
 
-            <div className="infra-card">
-              <div className="infra-card-body" style={{ padding: '30px' }}>
-                <div style={{ color: 'var(--primary)', marginBottom: '15px' }}><FileText size={32} /></div>
-                <h3>Solicitação de Prontuários</h3>
-                <p style={{ marginTop: '10px' }}>Procedimentos e documentações necessárias para a solicitação de cópias de prontuários médicos pelo paciente ou familiar.</p>
+              <div className="infra-card reveal stagger-3">
+                <div className="infra-card-body" style={{ padding: '30px' }}>
+                  <div style={{ color: 'var(--primary)', marginBottom: '15px' }}><FileText size={32} /></div>
+                  <h3>Solicitação de Prontuários</h3>
+                  <p style={{ marginTop: '10px' }}>Procedimentos e documentações necessárias para a solicitação de cópias de prontuários médicos pelo paciente ou familiar.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* WAVE DIVIDER */}
+      <WaveDivider fillColor="#f4fbf8" />
 
       {/* CONVÊNIOS SECTION */}
-      <section id="convenios" className="section-alt">
-        <div className="section-header">
-          <h2>Convênios Atendidos</h2>
-          <p>Trabalhamos com uma ampla rede credenciada de planos de saúde.</p>
-        </div>
+      <section id="convenios" className="section-pattern">
+        <div>
+          <div className="section-header reveal">
+            <h2>Convênios Atendidos</h2>
+            <p>Trabalhamos com uma ampla rede credenciada de planos de saúde.</p>
+          </div>
 
-        <div className="agreements-grid">
-          {agreements.map((name, index) => (
-            <div key={index} className="agreement-logo-card">
-              <span className="agreement-logo-name">{name}</span>
-            </div>
-          ))}
-        </div>
-        
-        <div style={{ marginTop: '40px', textAlign: 'center' }}>
-          <p style={{ fontSize: '0.95rem', marginBottom: '20px' }}>
-            *A cobertura de planos de saúde pode variar por procedimento. Confirme seu credenciamento antes do atendimento.
-          </p>
-          <a href={getWppLink("Olá, gostaria de verificar se o meu convênio [digite o convênio] cobre o procedimento [digite o procedimento] no Hospital São Lucas.")} target="_blank" rel="noopener noreferrer" className="nav-btn-wpp" style={{ display: 'inline-flex' }}>
-            <Shield size={16} style={{ marginRight: '6px' }} />
-            Verificar Cobertura
-          </a>
+          <div className="agreements-grid">
+            {agreements.map((item, index) => (
+              <div key={index} className={`agreement-logo-card reveal stagger-${index + 1}`}>
+                <img 
+                  src={item.logo} 
+                  alt={`Logo ${item.name}`} 
+                  className="agreement-logo-img"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+                <span className="agreement-logo-name">{item.name}</span>
+              </div>
+            ))}
+          </div>
+          
+          <div style={{ marginTop: '40px', textAlign: 'center' }} className="reveal">
+            <p style={{ fontSize: '0.95rem', marginBottom: '20px' }}>
+              *A cobertura de planos de saúde pode variar por procedimento. Confirme seu credenciamento antes do atendimento.
+            </p>
+            <a href={getWppLink("Olá, gostaria de verificar se o meu convênio [digite o convênio] cobre o procedimento [digite o procedimento] no Hospital São Lucas.")} target="_blank" rel="noopener noreferrer" className="nav-btn-wpp" style={{ display: 'inline-flex' }}>
+              <Shield size={16} style={{ marginRight: '6px' }} />
+              Verificar Cobertura
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* DOAÇÕES E VOLUNTARIADO SECTION */}
-      <section id="doacoes">
+      {/* WAVE DIVIDER to dark */}
+      <WaveDivider fillColor="#032116" />
+
+      {/* DOAÇÕES E VOLUNTARIADO SECTION — DARK THEME */}
+      <section id="doacoes" className="section-dark">
         <div>
-          <div className="section-header">
+          <div className="section-header reveal">
             <h2>Doações e Voluntariado</h2>
             <p>Junte-se a nós para transformar a saúde e apoiar quem mais precisa.</p>
           </div>
 
           <div className="infra-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))' }}>
-            <div className="infra-card">
-              <div className="infra-card-body" style={{ padding: '40px' }}>
-                <div style={{ color: 'var(--secondary)', marginBottom: '15px' }}><Heart size={40} /></div>
-                <h3>Doações e Apoio Institucional</h3>
-                <p style={{ marginTop: '15px' }}>Saiba como pessoas físicas e empresas podem contribuir para a melhoria de nossa infraestrutura e projetos assistenciais através de doações diretas e parcerias.</p>
-                <button className="nav-btn-wpp" style={{ marginTop: '20px', background: 'var(--secondary)' }}>Saiba Como Doar</button>
+            <div className="glass-card reveal stagger-1">
+              <div className="glass-icon glass-icon-red">
+                <Heart size={28} />
               </div>
+              <h3>Doações e Apoio Institucional</h3>
+              <p>Saiba como pessoas físicas e empresas podem contribuir para a melhoria de nossa infraestrutura e projetos assistenciais através de doações diretas e parcerias.</p>
+              <button className="glass-btn glass-btn-primary">
+                <Heart size={16} />
+                Saiba Como Doar
+              </button>
             </div>
             
-            <div className="infra-card">
-              <div className="infra-card-body" style={{ padding: '40px' }}>
-                <div style={{ color: 'var(--primary)', marginBottom: '15px' }}><Users size={40} /></div>
-                <h3>Voluntariado</h3>
-                <p style={{ marginTop: '15px' }}>Dedique um pouco do seu tempo e talento para levar conforto, alegria e suporte aos nossos pacientes. Conheça nosso programa oficial de voluntariado.</p>
-                <button className="nav-btn-wpp" style={{ marginTop: '20px' }}>Seja um Voluntário</button>
+            <div className="glass-card reveal stagger-2">
+              <div className="glass-icon glass-icon-green">
+                <Users size={28} />
               </div>
+              <h3>Voluntariado</h3>
+              <p>Dedique um pouco do seu tempo e talento para levar conforto, alegria e suporte aos nossos pacientes. Conheça nosso programa oficial de voluntariado.</p>
+              <button className="glass-btn glass-btn-outline">
+                <Users size={16} />
+                Seja um Voluntário
+              </button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* WAVE DIVIDER from dark */}
+      <WaveDivider fillColor="#f4fbf8" flip />
 
       {/* NOTÍCIAS SECTION */}
       <section id="noticias" className="section-alt">
         <div>
-          <div className="section-header">
+          <div className="section-header reveal">
             <h2>Notícias e Informações</h2>
             <p>Fique por dentro das últimas novidades, eventos e comunicados do Hospital São Lucas.</p>
           </div>
 
-          <div className="quick-access-grid">
-            <div className="quick-card">
-              <div className="quick-icon-wrapper" style={{ background: 'rgba(56, 189, 248, 0.1)', color: '#0284c7' }}><Newspaper size={24} /></div>
-              <h3>Notícias</h3>
-              <p>Acompanhe os avanços médicos, dicas de saúde e inovações da nossa equipe.</p>
-            </div>
-            <div className="quick-card">
-              <div className="quick-icon-wrapper" style={{ background: 'rgba(56, 189, 248, 0.1)', color: '#0284c7' }}><Megaphone size={24} /></div>
-              <h3>Comunicados</h3>
-              <p>Avisos importantes sobre funcionamento, serviços e atualizações institucionais.</p>
-            </div>
-            <div className="quick-card">
-              <div className="quick-icon-wrapper" style={{ background: 'rgba(56, 189, 248, 0.1)', color: '#0284c7' }}><Calendar size={24} /></div>
-              <h3>Eventos</h3>
-              <p>Palestras, campanhas de saúde e encontros promovidos para a comunidade.</p>
-            </div>
-            <div className="quick-card">
-              <div className="quick-icon-wrapper" style={{ background: 'rgba(56, 189, 248, 0.1)', color: '#0284c7' }}><Camera size={24} /></div>
-              <h3>Imprensa</h3>
-              <p>Acesso a materiais de divulgação, releases e contatos para jornalistas.</p>
-            </div>
+          <div className="news-grid">
+            {newsItems.map((item, index) => (
+              <div key={index} className={`news-card reveal stagger-${index + 1}`}>
+                <div className="news-card-img-wrapper">
+                  <img src={item.img} alt={item.title} className="news-card-img" />
+                </div>
+                <div className="news-card-body">
+                  <span className="news-card-date">
+                    {item.icon}
+                    {item.date}
+                  </span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <span className="news-card-link">
+                    Leia mais <ArrowRight size={16} />
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* WAVE DIVIDER */}
+      <WaveDivider fillColor="#ffffff" flip />
+
       {/* CONTATO & LOCALIZAÇÃO */}
       <section id="contato">
         <div className="contact-grid">
-          <div className="contact-info-block">
+          <div className="contact-info-block reveal-left">
             <h2>Contato</h2>
             <p>Estamos prontos para atender você. Utilize nossos canais ou faça-nos uma visita.</p>
             
@@ -447,7 +594,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="map-container">
+          <div className="map-container reveal-right">
             <iframe 
               title="Mapa de Localização do Hospital São Lucas"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.597654516139!2d-49.53974442469956!3d-25.40555677755866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ddf93c5d63ef1b%3A0x6e9f78328761a296!2sR.%20Generoso%20Marques%2C%202022%20-%20Centro%2C%20Campo%20Largo%20-%20PR%2C%2083601-390!5e0!3m2!1spt-BR!2sbr!4v1721000000000!5m2!1spt-BR!2sbr" 
