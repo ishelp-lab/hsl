@@ -1,18 +1,18 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { 
-  Phone, 
-  MapPin, 
-  Clock, 
-  FileText, 
-  Activity, 
-  Heart, 
-  Shield, 
-  Award, 
-  Menu, 
-  X, 
-  ArrowRight, 
-  Stethoscope, 
+import {
+  Phone,
+  MapPin,
+  Clock,
+  FileText,
+  Activity,
+  Heart,
+  Shield,
+  Award,
+  Menu,
+  X,
+  ArrowRight,
+  Stethoscope,
   MessageSquare,
   ChevronRight,
   Sparkles,
@@ -251,8 +251,8 @@ function HomePage() {
             <a href={getWppLink("Olá, estou no site do Hospital São Lucas e gostaria de agendar um atendimento.")} target="_blank" rel="noopener noreferrer" className="hero-btn">
               Falar com o Hospital
               <svg className="arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
           </div>
@@ -294,7 +294,7 @@ function HomePage() {
         <div className="about-grid">
           <div className="about-text reveal-left">
             <h2>O Hospital</h2>
-            
+
             <div className="about-bullets" style={{ marginTop: '30px' }}>
               <div className="about-bullet-item">
                 <BookmarkCheck className="about-bullet-icon" size={24} style={{ marginTop: '4px' }} />
@@ -303,7 +303,7 @@ function HomePage() {
                   <p>Há mais de três décadas, o Hospital São Lucas é referência em saúde, oferecendo atendimento humanizado, segurança clínica e inovação tecnológica.</p>
                 </div>
               </div>
-              
+
               <div className="about-bullet-item">
                 <Sparkles className="about-bullet-icon" size={24} style={{ marginTop: '4px' }} />
                 <div className="about-bullet-text">
@@ -386,7 +386,7 @@ function HomePage() {
                 <ArrowRight size={16} />
               </div>
               <div>
-                <h3 style={{ fontSize: '1rem', margin: '0 0 5px 0', color: 'var(--primary)' }}>Ver Todos os Exames</h3>
+                <h3 style={{ fontSize: '1rem', margin: '0 0 5px 0', color: 'var(--primary)' }}>Ver Todas as Especialidades</h3>
                 <p style={{ fontSize: '0.8rem', margin: 0, color: 'var(--text-light)' }}>Lista completa de especialidades</p>
               </div>
             </Link>
@@ -422,7 +422,7 @@ function HomePage() {
                   <p style={{ marginTop: '10px' }}>O que trazer, documentos necessários, regras do quarto e instruções detalhadas para o momento de sua alta hospitalar.</p>
                 </div>
               </div>
-              
+
               <div className="infra-card reveal stagger-2">
                 <div className="infra-card-body" style={{ padding: '30px' }}>
                   <div style={{ color: 'var(--primary)', marginBottom: '15px' }}><Clock size={32} /></div>
@@ -457,9 +457,9 @@ function HomePage() {
           <div className="agreements-grid">
             {agreements.map((item, index) => (
               <div key={index} className={`agreement-logo-card reveal stagger-${index + 1}`}>
-                <img 
-                  src={item.logo} 
-                  alt={`Logo ${item.name}`} 
+                <img
+                  src={item.logo}
+                  alt={`Logo ${item.name}`}
                   className="agreement-logo-img"
                   onError={(e) => { e.target.style.display = 'none'; }}
                 />
@@ -467,7 +467,7 @@ function HomePage() {
               </div>
             ))}
           </div>
-          
+
           <div style={{ marginTop: '40px', textAlign: 'center' }} className="reveal">
             <p style={{ fontSize: '0.95rem', marginBottom: '20px' }}>
               *A cobertura de planos de saúde pode variar por procedimento. Confirme seu credenciamento antes do atendimento.
@@ -503,7 +503,7 @@ function HomePage() {
                 Saiba Como Doar
               </button>
             </div>
-            
+
             <div className="glass-card reveal stagger-2">
               <div className="glass-icon glass-icon-green">
                 <Users size={28} />
@@ -564,13 +564,13 @@ function HomePage() {
           <div className="contact-info-block reveal-left">
             <h2>Contato</h2>
             <p>Estamos prontos para atender você. Utilize nossos canais ou faça-nos uma visita.</p>
-            
+
             <div className="contact-methods">
               <div className="contact-method-item">
                 <div className="contact-method-icon"><Phone size={20} /></div>
                 <div className="contact-method-text">
                   <h4>Fale Conosco (Telefones e E-mails)</h4>
-                  <p><a href="tel:+554130329300" style={{ fontWeight: '500' }}>(41) 3032-9300</a><br/>contato@hospitalsaolucas.com.br</p>
+                  <p><a href="tel:+554130329300" style={{ fontWeight: '500' }}>(41) 3032-9300</a><br />contato@hospitalsaolucas.com.br</p>
                 </div>
               </div>
 
@@ -601,12 +601,12 @@ function HomePage() {
           </div>
 
           <div className="map-container reveal-right">
-            <iframe 
+            <iframe
               title="Mapa de Localização do Hospital São Lucas"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.597654516139!2d-49.53974442469956!3d-25.40555677755866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ddf93c5d63ef1b%3A0x6e9f78328761a296!2sR.%20Generoso%20Marques%2C%202022%20-%20Centro%2C%20Campo%20Largo%20-%20PR%2C%2083601-390!5e0!3m2!1spt-BR!2sbr!4v1721000000000!5m2!1spt-BR!2sbr" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.597654516139!2d-49.53974442469956!3d-25.40555677755866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ddf93c5d63ef1b%3A0x6e9f78328761a296!2sR.%20Generoso%20Marques%2C%202022%20-%20Centro%2C%20Campo%20Largo%20-%20PR%2C%2083601-390!5e0!3m2!1spt-BR!2sbr!4v1721000000000!5m2!1spt-BR!2sbr"
               className="map-iframe"
-              allowFullScreen="" 
-              loading="lazy" 
+              allowFullScreen=""
+              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
