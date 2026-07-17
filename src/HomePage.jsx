@@ -216,7 +216,7 @@ function HomePage() {
             </ul>
           </nav>
 
-          <div className="navbar-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <div className="navbar-actions">
             <a href={getWppLink("Olá, gostaria de agendar uma consulta/exame no Hospital São Lucas.")} target="_blank" rel="noopener noreferrer" className="nav-btn-wpp">
               <MessageSquare size={16} />
               Falar no WhatsApp

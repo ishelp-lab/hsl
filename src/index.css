@@ -57,6 +57,10 @@
   padding: 0;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -240,6 +244,12 @@ section {
 
 .nav-link:hover::after, .nav-link.active::after {
   width: 100%;
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 .nav-btn-wpp {
@@ -1736,7 +1746,7 @@ section {
     display: flex;
   }
   
-  .navbar-actions {
+  .navbar-actions .nav-btn-wpp {
     display: none;
   }
   
