@@ -367,11 +367,6 @@ function HomePage() {
                 Agendar Atendimento
               </a>
 
-              <h4 style={{ marginTop: '30px' }}>Lista Completa</h4>
-              <p>Conheça todos os nossos exames, serviços e especialidades médicas.</p>
-              <Link to="/especialidades" className="nav-btn-wpp" style={{ display: 'inline-flex', background: 'var(--secondary)' }}>
-                Ver Todos os Exames
-              </Link>
             </div>
           </div>
 
@@ -386,6 +381,15 @@ function HomePage() {
                 </div>
               </div>
             ))}
+            <Link to="/especialidades" className="specialty-item reveal stagger-9" style={{ padding: '15px', textDecoration: 'none', background: 'rgba(255, 255, 255, 0.7)', border: '1px dashed var(--primary)' }}>
+              <div className="specialty-icon-wrapper" style={{ width: '32px', height: '32px', background: 'var(--primary)', color: 'white' }}>
+                <ArrowRight size={16} />
+              </div>
+              <div>
+                <h3 style={{ fontSize: '1rem', margin: '0 0 5px 0', color: 'var(--primary)' }}>Ver Todos os Exames</h3>
+                <p style={{ fontSize: '0.8rem', margin: 0, color: 'var(--text-light)' }}>Lista completa de especialidades</p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
