@@ -211,7 +211,7 @@ function HomePage() {
               <li><a href="#pacientes" className={`nav-link ${activeSection === 'pacientes' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('pacientes'); }}>Pacientes</a></li>
               <li><a href="#convenios" className={`nav-link ${activeSection === 'convenios' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('convenios'); }}>Convênios</a></li>
               <li><a href="#doacoes" className={`nav-link ${activeSection === 'doacoes' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('doacoes'); }}>Doações</a></li>
-              <li><a href="#noticias" className={`nav-link ${activeSection === 'noticias' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('noticias'); }}>Notícias</a></li>
+              {/* <li><a href="#noticias" className={`nav-link ${activeSection === 'noticias' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('noticias'); }}>Notícias</a></li> */}
               <li><a href="#contato" className={`nav-link ${activeSection === 'contato' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); handleNavClick('contato'); }}>Contato</a></li>
             </ul>
           </nav>
@@ -518,7 +518,8 @@ function HomePage() {
       {/* WAVE DIVIDER from dark */}
       <WaveDivider fillColor="#f4fbf8" flip />
 
-      {/* NOTÍCIAS SECTION */}
+      {/* NOTÍCIAS SECTION (Oculta temporariamente) */}
+      {/* 
       <section id="noticias" className="section-alt">
         <div>
           <div className="section-header reveal">
@@ -548,6 +549,7 @@ function HomePage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* WAVE DIVIDER */}
       <WaveDivider fillColor="#ffffff" flip />
@@ -641,7 +643,7 @@ function HomePage() {
             <ul className="footer-links">
               <li><a href="#convenios" onClick={(e) => { e.preventDefault(); handleNavClick('convenios'); }}>Convênios</a></li>
               <li><a href="#doacoes" onClick={(e) => { e.preventDefault(); handleNavClick('doacoes'); }}>Doações e Voluntariado</a></li>
-              <li><a href="#noticias" onClick={(e) => { e.preventDefault(); handleNavClick('noticias'); }}>Notícias</a></li>
+              {/* <li><a href="#noticias" onClick={(e) => { e.preventDefault(); handleNavClick('noticias'); }}>Notícias</a></li> */}
               <li><a href="#contato" onClick={(e) => { e.preventDefault(); handleNavClick('contato'); }}>Contato</a></li>
             </ul>
           </div>
