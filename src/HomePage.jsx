@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Phone,
@@ -40,6 +40,7 @@ function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
+  const [aboutTab, setAboutTab] = useState('historia')
   const [counterValue, setCounterValue] = useState(0)
   const counterRef = useRef(null)
   const counterAnimated = useRef(false)
@@ -71,7 +72,7 @@ function HomePage() {
           if (entry.isIntersecting && !counterAnimated.current) {
             counterAnimated.current = true
             let start = 0
-            const end = 30
+            const end = 55
             const duration = 1500
             const step = duration / end
 
@@ -290,53 +291,127 @@ function HomePage() {
       </div>
 
       {/* O HOSPITAL SECTION */}
-      <section id="ohospital">
+      <section id="ohospital" className="section-pattern">
         <div className="about-grid">
           <div className="about-text reveal-left">
-            <h2>O Hospital</h2>
+            <div className="section-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
+              <Sparkles size={16} /> Institucional
+            </div>
+            <h2>O Hospital São Lucas</h2>
+            <p className="about-intro-lead">
+              Compromisso com a saúde, acolhimento humanizado e constante evolução para servir a Campo Largo e toda a região.
+            </p>
 
-            <div className="about-bullets" style={{ marginTop: '30px' }}>
-              <div className="about-bullet-item">
-                <BookmarkCheck className="about-bullet-icon" size={24} style={{ marginTop: '4px' }} />
-                <div className="about-bullet-text">
-                  <h4>História</h4>
-                  <p>Há mais de três décadas, o Hospital São Lucas é referência em saúde, oferecendo atendimento humanizado, segurança clínica e inovação tecnológica.</p>
-                </div>
-              </div>
-
-              <div className="about-bullet-item">
-                <Sparkles className="about-bullet-icon" size={24} style={{ marginTop: '4px' }} />
-                <div className="about-bullet-text">
-                  <h4>Missão, Visão e Valores</h4>
-                  <p>Nosso compromisso é com o bem-estar contínuo de cada paciente, centrando nosso atendimento na valorização da vida com ética e excelência.</p>
-                </div>
-              </div>
-
-              <div className="about-bullet-item">
-                <Heart className="about-bullet-icon" size={24} style={{ marginTop: '4px' }} />
-                <div className="about-bullet-text">
-                  <h4>Estrutura</h4>
-                  <p>Instalações projetadas para oferecer o máximo de conforto e tecnologia, incluindo Centro Cirúrgico, UTI e Pronto Atendimento.</p>
-                </div>
-              </div>
-
-              <div className="about-bullet-item">
-                <Users className="about-bullet-icon" size={24} style={{ marginTop: '4px' }} />
-                <div className="about-bullet-text">
-                  <h4>Gestão / Diretoria</h4>
-                  <p>Administração focada em transparência, sustentabilidade e no desenvolvimento constante de nossas equipes.</p>
-                </div>
-              </div>
-
-              <div className="about-bullet-item">
-                <Award className="about-bullet-icon" size={24} style={{ marginTop: '4px' }} />
-                <div className="about-bullet-text">
-                  <h4>Certificações e Habilitações</h4>
-                  <p>Garantia de processos de alta qualidade chancelados por rigorosos órgãos e normas de saúde.</p>
-                </div>
-              </div>
+            {/* TAB NAVIGATION */}
+            <div className="about-tabs-nav">
+              <button
+                type="button"
+                className={`about-tab-btn ${aboutTab === 'historia' ? 'active' : ''}`}
+                onClick={() => setAboutTab('historia')}
+              >
+                <BookmarkCheck size={18} />
+                <span>Nossa História</span>
+              </button>
+              <button
+                type="button"
+                className={`about-tab-btn ${aboutTab === 'missao' ? 'active' : ''}`}
+                onClick={() => setAboutTab('missao')}
+              >
+                <Sparkles size={18} />
+                <span>Missão, Visão e Valores</span>
+              </button>
+              <button
+                type="button"
+                className={`about-tab-btn ${aboutTab === 'estrutura' ? 'active' : ''}`}
+                onClick={() => setAboutTab('estrutura')}
+              >
+                <Heart size={18} />
+                <span>Estrutura</span>
+              </button>
             </div>
 
+            {/* TAB CONTENTS */}
+            <div className="about-tabs-content">
+              {/* TAB 1: HISTÓRIA */}
+              {aboutTab === 'historia' && (
+                <div className="about-tab-panel animate-fade-in">
+                  <div className="about-foundation-pill">
+                    <Calendar size={15} />
+                    <span>Fundado em 16 de maio de 1968 &bull; Campo Largo, Paraná</span>
+                  </div>
+                  <div className="about-paragraphs">
+                    <p>
+                      Fundado em 16 de maio de 1968, em Campo Largo, Paraná, o hospital construiu uma trajetória marcada pelo compromisso com a saúde, pelo acolhimento e pelo cuidado humanizado. Desde sua criação, a instituição trabalha para oferecer atendimento seguro e de qualidade à população.
+                    </p>
+                    <p>
+                      Ao longo dos anos, o hospital acompanhou o crescimento da cidade e os avanços da medicina, ampliando sua estrutura, modernizando seus serviços e incorporando novas tecnologias. Essa evolução permitiu atender às necessidades da comunidade com cada vez mais eficiência, responsabilidade e dedicação.
+                    </p>
+                    <p>
+                      A instituição atua em diversas especialidades médicas e áreas de assistência à saúde, oferecendo cuidados clínicos, cirúrgicos, diagnósticos e terapêuticos. O atendimento é realizado por uma equipe multiprofissional preparada para acompanhar cada paciente nas diferentes etapas do cuidado.
+                    </p>
+                    <p>
+                      Com experiência consolidada e atenção constante às necessidades da população, o hospital mantém vivos os valores que orientam sua história. Tradição, inovação e respeito à vida fazem parte de sua missão de promover saúde e qualidade de vida para Campo Largo e toda a região.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 2: MISSÃO, VISÃO E VALORES */}
+              {aboutTab === 'missao' && (
+                <div className="about-tab-panel animate-fade-in">
+                  <div className="mvv-quote">
+                    <p>&ldquo;Cuidar começa na escuta, no olhar atento e no respeito à história de cada pessoa.&rdquo;</p>
+                  </div>
+
+                  <div className="mvv-cards-grid">
+                    <div className="mvv-card">
+                      <div className="mvv-icon-wrap"><Award size={20} /></div>
+                      <div className="mvv-info">
+                        <h4>Nossa Missão</h4>
+                        <p>Transformar conhecimento, experiência e trabalho em equipe em uma presença segura nos momentos em que a vida mais precisa de atenção.</p>
+                      </div>
+                    </div>
+
+                    <div className="mvv-card">
+                      <div className="mvv-icon-wrap"><Activity size={20} /></div>
+                      <div className="mvv-info">
+                        <h4>Nossa Visão</h4>
+                        <p>Evoluir com a medicina, incorporar novas possibilidades e permanecer próximos de Campo Largo e de sua gente.</p>
+                      </div>
+                    </div>
+
+                    <div className="mvv-card">
+                      <div className="mvv-icon-wrap"><Shield size={20} /></div>
+                      <div className="mvv-info">
+                        <h4>Nossos Valores</h4>
+                        <p>Ética, sensibilidade, responsabilidade e respeito à vida são os valores que renovamos em cada atendimento.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 3: ESTRUTURA */}
+              {aboutTab === 'estrutura' && (
+                <div className="about-tab-panel animate-fade-in">
+                  <div className="about-paragraphs">
+                    <p>
+                      Cada espaço do hospital é pensado para acolher, cuidar e proporcionar segurança. Nossa estrutura reúne ambientes preparados para atendimentos, exames, procedimentos e internações, oferecendo suporte ao trabalho integrado das equipes e mais tranquilidade aos pacientes e seus familiares.
+                    </p>
+                    <p>
+                      O hospital permanece em constante processo de reforma, modernização e melhoria de seus espaços. Mais do que renovar instalações, buscamos acompanhar as transformações da saúde e construir, a cada etapa, um ambiente mais confortável, funcional e preparado para cuidar das pessoas.
+                    </p>
+                  </div>
+
+                  <div className="structure-badges-list">
+                    <span className="struct-badge"><Heart size={14} /> Atendimentos e Internações Humanizadas</span>
+                    <span className="struct-badge"><Activity size={14} /> Suporte Multiprofissional Integrado</span>
+                    <span className="struct-badge"><Shield size={14} /> Segurança Clínica e Tecnologias Modernas</span>
+                    <span className="struct-badge"><Sparkles size={14} /> Reforma e Modernização Contínua</span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="about-image-container reveal-right">
@@ -344,6 +419,7 @@ function HomePage() {
             <div className="about-badge" ref={counterRef}>
               <div className="about-badge-num">{counterValue}+</div>
               <div className="about-badge-txt">Anos de<br />Tradição</div>
+              <div className="about-badge-sub">Desde 1968 em Campo Largo</div>
             </div>
           </div>
         </div>
@@ -594,7 +670,7 @@ function HomePage() {
                 <div className="contact-method-icon"><Briefcase size={20} /></div>
                 <div className="contact-method-text">
                   <h4>Trabalhe Conosco</h4>
-                  <p>Faça parte da nossa equipe. Envie seu currículo e acompanhe nossas vagas.</p>
+                  <p>Faça parte da nossa equipe. Acompanhe nossas oportunidades em nosso <a href="https://linkedin.com/company/hospital-são-lucas-campo-largo/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', fontWeight: '600', textDecoration: 'underline' }}>LinkedIn</a> ou envie seu currículo.</p>
                 </div>
               </div>
             </div>
@@ -678,6 +754,9 @@ function HomePage() {
             </a>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="Facebook">
               <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://linkedin.com/company/hospital-são-lucas-campo-largo/" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
             </a>
           </div>
         </div>
