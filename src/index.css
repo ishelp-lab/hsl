@@ -1344,7 +1344,7 @@ section {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  background-image: url('/hero_bg.png');
+  background-image: url('/hero_bg.jpg');
   padding-top: 100px;
   overflow: hidden;
 }
